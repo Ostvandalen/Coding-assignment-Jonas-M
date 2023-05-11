@@ -18,7 +18,7 @@ public class PauseGame : MonoBehaviour
 
     
 
-    // basic pause menu with resume and quit function so the player can pause and close the application
+    // Was first just a basic pause menu but I added stuff so it works as a main menu as well
 
     void Update()
 
@@ -56,11 +56,11 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         Cursor.lockState = CursorLockMode.None; //unlocks the cursor so buttons can be clicked with the mouse
-        Cursor.visible = true;
-        uiCamera.SetActive(true);
-        playerCamera.SetActive(false);
+        Cursor.visible = true; // activates the cursor
+        uiCamera.SetActive(true); // change to an uicamera when paused
+        playerCamera.SetActive(false); // deactivates the main camera so it doesnt move when paused
         music.GetComponent<AudioSource>().Pause(); //Pauses audio
-        cursor.SetActive(false);
+        cursor.SetActive(false); // hides the crosshair so it doesnt get away in the pausemenu
         
     }
 
@@ -69,12 +69,12 @@ public class PauseGame : MonoBehaviour
         Application.Quit();
     }
 
-    public void NewGame()
+    public void NewGame() // New game function. Double check so the scene is in the right place in build settings
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void BackToMenu()
+    public void BackToMenu() // Basic back to menu function. Needs to be altered if more scenes are added
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
