@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class PauseGame : MonoBehaviour
 {
     public static bool GameIsPaused = false;
@@ -12,7 +14,9 @@ public class PauseGame : MonoBehaviour
     public GameObject uiCamera;
     public GameObject playerCamera;
     public GameObject music;
+    public GameObject cursor;
 
+    
 
     // basic pause menu with resume and quit function so the player can pause and close the application
 
@@ -28,7 +32,7 @@ public class PauseGame : MonoBehaviour
             else
             {
                 Pause();
-            }         
+            }
         }
     }
 
@@ -42,6 +46,7 @@ public class PauseGame : MonoBehaviour
         uiCamera.SetActive(false);
         playerCamera.SetActive(true);
         music.GetComponent<AudioSource>().UnPause(); // resumes audio
+        cursor.SetActive(true);
 
     }
 
@@ -55,6 +60,8 @@ public class PauseGame : MonoBehaviour
         uiCamera.SetActive(true);
         playerCamera.SetActive(false);
         music.GetComponent<AudioSource>().Pause(); //Pauses audio
+        cursor.SetActive(false);
+        
     }
 
     public void QuitGame() // Quits the game to desktop
@@ -71,4 +78,6 @@ public class PauseGame : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
+    
 }

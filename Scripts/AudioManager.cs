@@ -2,9 +2,11 @@ using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
+
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public AudioMixerGroup audioMixer;
 
     void Awake()
     {
@@ -15,6 +17,8 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            
+            
         }
     }
 
@@ -22,5 +26,6 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+        s.source.outputAudioMixerGroup = audioMixer;
     }
 }
